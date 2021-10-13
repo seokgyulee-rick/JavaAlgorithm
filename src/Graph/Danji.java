@@ -1,13 +1,15 @@
 package Graph;
 
+import javax.lang.model.SourceVersion;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class Danji {
 
-    static DFSandBFS.FastReader scan = new DFSandBFS.FastReader();
+    static FastReader scan = new FastReader();
     static StringBuilder sb = new StringBuilder();
 
     static int N, M, V;
@@ -15,9 +17,11 @@ public class Danji {
     static boolean[][] visit;
     static int []x = {1,0,-1,0};
     static int []y = {0,1,0,-1};
+    static int []danji ={};
 
     public static void input() {
         N = scan.nextInt();
+        danji = new int[N*N];
         visit = new boolean[N + 1][N + 1];
         map = new int[N + 1][N + 1];
         for (int k = 1; k <= N; k++) {
@@ -29,14 +33,18 @@ public class Danji {
 //                System.out.println("strNum = " + strNum.length());
 //                System.out.println("strNum = " + strNum.charAt(6));
                 map[k][i] = strNum.charAt(i-1)-'0';
+//                System.out.println("map[k][i] = " + map[k][i]);
+//                System.out.println("visit[k][i] = " + visit[k][i]);
             }
         }
     }
 
     public static void dfs(int a, int b, int mark) {
         visit[a][b] = true;
+        danji[mark]++;
+//        System.out.println("a  = " + a+ " b = " + b);
         for (int i = 0; i<4 ; i++){
-            if(N>=a+x[i]&& a+x[i] >=1 && N>=b+y[i] && b+y[i]>=1&& map[a+x[i]][b+y[i]]==1){
+            if(N>=a+x[i]&& a+x[i] >=1 && N>=b+y[i] && b+y[i]>=1&& map[a+x[i]][b+y[i]]==1 && visit[a+x[i]][b+y[i]]==false){
                 dfs(a+x[i], b+y[i], mark);
             }
         }
@@ -53,7 +61,16 @@ public class Danji {
                 }
             }
         }
-        System.out.println("mark = " + mark);
+        mark--;
+        System.out.println(mark);
+        int [] new_danji = new int[mark];
+        for (int i = 0 ; i <mark ; i++){
+           new_danji[i] = danji[i+1];
+        }
+        Arrays.sort(new_danji);
+        for (int i = 0 ; i <mark ; i++){
+            System.out.println(new_danji[i]);
+        }
     }
 
     public static void main(String[] args) {
