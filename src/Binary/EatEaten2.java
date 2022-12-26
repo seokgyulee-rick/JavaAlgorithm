@@ -13,7 +13,7 @@ public class EatEaten2 {
 
     static int N, A, B;
     static int[] aAry, bAry;
-    public void input(){
+    public static void input(){
         N = scan.nextInt();
 
         for (int i = 1 ; i <=N ; i++){
@@ -30,7 +30,7 @@ public class EatEaten2 {
         }
     }
 
-    public void pro(){
+    public static void pro(){
         Arrays.sort(bAry);
 
         for (int i = 0 ; i< A; i++){

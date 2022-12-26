@@ -3,7 +3,7 @@ package Binary;
 import java.io.*;
 import java.util.*;
 
-public class neverSeenHeard {
+public class neverSeenHeard2 {
     static FastReader scan = new FastReader();
     static int N, M;
     static String[] h, s;
